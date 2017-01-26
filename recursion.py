@@ -9,6 +9,7 @@ def factorial(n):
     # implement factorial_iterative and factorial_recursive below, then
     # change this to call your implementation to verify it passes all tests
     # return factorial_iterative(n)
+
     return factorial_recursive(n)
 
 
@@ -17,6 +18,13 @@ def factorial_iterative(n):
     pass
     # once implemented, change factorial (above) to call factorial_iterative
     # to verify that your iterative implementation passes all tests below
+
+    product = 1
+    for i in range(n, - 1):
+        product = product * i + 1
+    return product
+
+
 
 
 def factorial_recursive(n):

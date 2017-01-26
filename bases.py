@@ -43,21 +43,21 @@ def encode(num, base):
     """
     assert 2 <= base <= 36
 
-    num_digits = math.ceil(log(num,base))
     remainder = None
-    residual = num
     output = []
-    for i in range(num_digits, - 1):
-        baseToPower = base**i
-        if baseToPower > num:
-            output.append("0")
+    nextNum = num
+    while nextNum is not 0:
+        remainder = nextNum % base
+        if remainder > 9:
+            output.append(str((chr(remainder + 87))))
+            nextNum = nextNum/base
         else:
-            remainder = math.floor(residual/baseToPower)
-            residual = residual - baseToPower
             output.append(str(remainder))
+            nextNum = nextNum/base
 
+    output = output[::-1]
+    return "".join(output)
 
-    numString = "".join(output)
 
 
 
@@ -65,12 +65,15 @@ def convert(str_num, base1, base2):
     """
     Convert given number from base1 to base2.
     """
+
+
     assert 2 <= base1 <= 36
     assert 2 <= base2 <= 36
 
+    base_ten = decode(str_num, base1)
+    targ_base = encode(base_ten, base2)
 
-    # TODO: Convert number
-
+    return targ_base
 
 def main():
     import sys
@@ -88,3 +91,4 @@ def main():
 if __name__ == '__main__':
     # main()
     print decode('101',2)
+    print encode(10, 2)
