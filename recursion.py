@@ -19,6 +19,9 @@ def factorial_iterative(n):
     # once implemented, change factorial (above) to call factorial_iterative
     # to verify that your iterative implementation passes all tests below
 
+    if n < 0 || type(n) is not int:
+        raise ValueError
+
     product = 1
     for i in range(n, - 1):
         product = product * i + 1
