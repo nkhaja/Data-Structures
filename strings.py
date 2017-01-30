@@ -10,21 +10,19 @@ def is_palindrome(text):
     # change this to call your implementation to verify it passes all tests
     assert isinstance(text, str)
     # return is_palindrome_iterative(text)
-    return is_palindrome_recursive(text)
+    return is_palindrome_iterative(text)
 
 def contains(text, sub):
     return contains_iterative(text,sub)
 
 
 def is_palindrome_iterative(text):
-    for i in range(0, len(text)/2):
-        revIndex = (i+1)*(-1)
-        if text[i] != text[revIndex]:
+#User strip() for cases where spaces matter
+#First and Last pointer for cases where special character must be ignored
+    for i in range(0, len(cleanText)/2):
+        if text[i] != text[-i - 1]:
             return False
     return True
-
-
-
 
 
 def is_palindrome_recursive(text, left=None, right=None):
@@ -44,9 +42,12 @@ def is_palindrome_recursive(text, left=None, right=None):
         return is_palindrome_recursive(text, left = left + 1, right = right - 1)
 
 
+# Return the index of the first part of the word
+# Do find first and find all
 
 def contains_iterative(string, sub):
     #insert condition for either being blank
+    # aaaab example will mess up here
     if string == "":
         return True
 
@@ -75,8 +76,12 @@ def contains_recursive(string, sub, success='', carry=0):
         return contains_recursive(string, sub, success, carry = carry + 1)
 
     else:
-        success = string[carry]
+        success = string[carry - len(success) + 1]
         return contains_recursive(string, sub, success, carry = carry + 1)
+
+
+
+
 
 
 
@@ -96,14 +101,20 @@ def main():
 
 if __name__ == '__main__':
     main()
+
     # print is_palindrome('radar')
     # print contains_iterative("hop", "chope")
     # print contains_iterative("snotty", "good")
     # print contains_iterative("a","a")
     # print contains_iterative("something", "thing")
+
     print contains_recursive("bobisgreatcheese", "great")
     print contains_recursive("a", "")
     print contains_recursive("","a")
 
     print contains_recursive("snotty", "good")
+
     print contains_recursive("something", "thing")
+
+    print contains_iterative("aaaaab", "aaab")
+    print contains_recursive("aaaaab", "aaab")
