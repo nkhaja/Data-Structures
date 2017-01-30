@@ -42,6 +42,20 @@ class TestSearch(unittest.TestCase):
         # binary search should return None for any item not in the list
         assert binary_search(names, 'Jeremy') is None
         assert binary_search(names, 'nobody') is None
+        assert binary_search(names, "zzzz") is None
+
+
+    def test_contains(self):
+        something = "something"
+        thing = "thing"
+        goat = "goat"
+        goatSandwhich = "breadgoatmorebread"
+        a = "a"
+        empty = ""
+
+        assert contains(something, thing) == True
+        assert contains(goatSandwhich, goat) == True
+        assert contains()
 
 
 if __name__ == '__main__':

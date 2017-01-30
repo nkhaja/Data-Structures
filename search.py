@@ -43,26 +43,24 @@ def binary_search(array, item):
 
 ## come back and see if you can do this without log function
 def binary_search_iterative(array, item):
-    count = len(array)
 
-    upper = len(array)
-    index = len(array) / 2
-    lower = 0
+    low = 0
+    high = len(array)
 
-    while count > 0:
-        indexItem = array[index]
-        if indexItem == item:
-            return index
-        elif item > indexItem:
-            lower = index
-            index = (lower + upper) / 2
-            count = count / 2
+    while low <= high:
+        middle = (low + high) / 2
+        currentItem = array[middle]
+
+        if currentItem == item:
+            return middle
+        elif item > currentItem:
+            low = middle
         else:
-            upper = index
-            index = (upper + lower) /2
-            count = count / 2
-
+            high = middle
     return None
+
+
+
 
     # once implemented, change binary_search to call binary_search_iterative
     # to verify that your iterative implementation passes all tests below
@@ -85,18 +83,6 @@ def binary_search_recursive(array, item, left=None, right=None):
 
     else:
         return binary_search_recursive(array, item, left, mid)
-
-
-
-
-
-
-
-
-
-
-
-
 
     # once implemented, change binary_search to call binary_search_recursive
     # to verify that your recursive implementation passes all tests below
