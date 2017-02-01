@@ -1,9 +1,11 @@
 #!python
+from linkedlist import LinkedList
+class Stack(LinkedList):
 
-class Stack(object):
 
     def __init__(self, iterable=None):
         """Initialize this stack and push the given items, if any"""
+        super(Stack, self).__init__()
         # TODO: initialize instance variables
         pass
         if iterable:
@@ -14,29 +16,39 @@ class Stack(object):
         """Return a string representation of this stack"""
         return 'Stack({})'.format(self.length())
 
+    #01
     def is_empty(self):
         """Return True if this stack is empty, or False otherwise"""
-        # TODO: check if empty
-        pass
+        return super(Stack, self).is_empty()
 
+
+    #0n or O1 dep on implementation
     def length(self):
         """Return the number of items in this stack"""
-        # TODO: count number of items
-        pass
+        return super(Stack, self).length()
 
+    #O1
     def peek(self):
         """Return the top item on this stack without removing it,
         or None if this stack is empty"""
-        # TODO: return top item, if any
-        pass
+        if self.is_empty():
+            return None
+        else:
+            return self.head.data
 
+    #01
     def push(self, item):
         """Push the given item onto this stack"""
         # TODO: push given item
-        pass
+        super(Stack,self).prepend(item)
 
+    #01
     def pop(self):
         """Return the top item and remove it from this stack,
         or raise ValueError if this stack is empty"""
-        # TODO: pop top item, if any
-        pass
+        if self.is_empty():
+            raise ValueError
+
+        popped_item = self.head.data
+        super(Stack,self).delete(self.head.data)
+        return popped_item
