@@ -94,7 +94,6 @@ class MinHeap(object):
             self.items[parent_index] = item
             self._bubble_up(parent_index)
 
-
     def _bubble_down(self, index):
         """Ensure the heap-ordering property is true below the given index,
         swapping out of order items, or until a leaf node is reached"""
@@ -104,6 +103,7 @@ class MinHeap(object):
         right_index = self._right_child_index(index)
         if left_index > self._last_index():
             return  # This index is a leaf node (does not have any children)
+
 
         # make sure that right index is within range
         # assign to left index if it is not
@@ -128,6 +128,7 @@ class MinHeap(object):
             self.items[child_index] = item
             self.items[index] = child_item
             self._bubble_down(child_index)
+
 
     def _last_index(self):
         """Return the last valid index in the underlying array of items"""
